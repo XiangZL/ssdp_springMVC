@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.xiaohu</groupId>
+    <artifactId>ssdp_springMVC</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ssdp_back</module>
+    </modules>
+    <packaging>pom</packaging>
+    <name>ssdp_springMVC</name>
+    <url>http://maven.apache.org</url>
+    <description>ssdp_springMVC pom</description>
+
+    <properties>
+        <!--Generic properties 通用配置-->
+        <java.version>1.8</java.version><!--jdk版本-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--web 配置-->
+        <jsp.version>2.3.1</jsp.version>
+        <jstl.version>1.2</jstl.version>
+        <servlet.version>3.1.0</servlet.version>
+        <!--spring相关配置-->
+        <springframework.version>4.3.9.RELEASE</springframework.version><!--springframework相关版本号-->
+        <aspectjrt.version>1.8.5</aspectjrt.version><!--aspectj注解支持-->
+        <junit.test>4.12</junit.test><!--单元测试junit的版本号-->
+        <!--log 日志相关配置-->
+        <logback.version>1.2.3</logback.version>
+        <!--<slf4j.vesrion>1.7.25</slf4j.vesrion>-->
+        <!--<log4j.version>1.2.17</log4j.version>-->
+        <!--任务调度-->
+        <quartz.version>2.2.2</quartz.version>
+        <!--mybatis配置文件-->
+        <!--此处注意：mybatis的3.4.0及以上版本用mybatis-spring1.3.0及以上版本；
+        mybatis的3.4.0以下版本用mybatis-spring1.3.0以下版本,否则会出现版本不兼容-->
+        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis-spring.version>1.2.5</mybatis-spring.version>
+        <!--json依赖包-->
+        <json.version>2.5.0</json.version>
+        <!--数据库驱动版本-->
+        <sqlserver.version>4.0.0</sqlserver.version>
+        <mysql.version>5.1.15</mysql.version>
+        <oracle.version>6</oracle.version>
+        <postgresql.version>9.4.1212</postgresql.version>
+        <!--数据库连接包-->
+        <dbcp.version>2.1.1</dbcp.version>
+        <c3p0.version>0.9.2.1</c3p0.version>
+        <druid.version>1.0.17</druid.version>
+        <!--Apache commmon-->
+        <commons-lang3.version>3.1</commons-lang3.version>
+        <common-collections4.version>4.0</common-collections4.version>
+        <commons-beanutils.version>1.8.3</commons-beanutils.version>
+        <commons-io.version>2.4</commons-io.version>
+        <common-collections.version>3.2.1</common-collections.version>
+        <common.fileupload.version>1.3</common.fileupload.version>
+        <common.compress.version>1.6</common.compress.version>
+        <commons-dbutils.version>1.5</commons-dbutils.version>
+        <commons-codec.version>1.8</commons-codec.version>
+        <commons-configuration.version>1.10</commons-configuration.version>
+    </properties>
+
+    <!--通用必须引入到包-->
+    <dependencies>
+        <!--1.日志输出相关-->
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>${slf4j.vesrion}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>log4j</groupId>-->
+            <!--<artifactId>log4j</artifactId>-->
+            <!--<version>${log4j.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>jcl-over-slf4j</artifactId>-->
+            <!--<version>${slf4j.vesrion}</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <!--spring test单元测试支持-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.test}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Apache Commons -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${common.fileupload.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+    </dependencies>
+
+    <!--预定义包-->
+    <dependencyManagement>
+        <!--还有待研究这个jar文件的真正作用，貌似没有它程序也稳定运行-->
+        <dependencies>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>7.0</version>
+            </dependency>
+
+            <!--Web端相关配置-->
+            <!--spring web mvc相关包-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>${jstl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${servlet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>javax.servlet.jsp-api</artifactId>
+                <version>${jsp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+
+            <!--spring IOC、AOP、DATA、TX、BEAN、Framework等核心包-->
+            <!--1.springframework相关包-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!--2.spring 事物支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!--3.spring aop支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!--4.aspectj支持-->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectjrt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectjrt.version}</version>
+            </dependency>
+            <!--spring jdbc支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!--spring tx 事物支持-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${springframework.version}</version>
+            </dependency>
+            <!--任务调度支持-->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz-jobs</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+            <!--mybatis相关-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!--json依赖包-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${json.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${json.version}</version>
+            </dependency>
+            <!--不同类型数据库驱动相关包 start-->
+            <!-- sqlserver2008 jar -->
+            <dependency>
+                <groupId>com.microsoft.sqlserver</groupId>
+                <artifactId>sqljdbc4</artifactId>
+                <version>${sqlserver.version}</version>
+            </dependency>
+            <!-- mysql jar -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- oracle jar -->
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc</artifactId>
+                <version>${oracle.version}</version>
+                <classifier>orclDriver</classifier>
+            </dependency>
+            <!-- pgsql jar -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <!--不同类型数据库驱动相关包 end-->
+
+            <!--数据库连接相关包 start-->
+            <!--1.dbcp-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-dbcp2</artifactId>
+                <version>${dbcp.version}</version>
+            </dependency>
+            <!--2.c3p0-->
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${c3p0.version}</version>
+            </dependency>
+            <!--3.druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!--数据库连接相关包 end-->
+
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <!-- 指定Maven编译插件，如果不设置，它就会用maven-compiler-plugin默认的jdk版本来进行处理 -->
+            <!-- 这样就容易出现版本不匹配的问题，以至于可能导致编译不通过的问题 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!--  maven-resources-plugin则用来处理资源文件。默认的主资源文件目录是src/main/resources，
+            很多用户会需要添加额外的资源文件目录，这个时候就可以通过配置maven-resources-plugin来实现。
+            此外，资源文件过滤也是Maven的一大特性，你可以在资源文件中使用${propertyName}形式的Maven属性，
+            然后配置maven-resources-plugin开启对资源文件的过滤，之后就可以针对不同环境通过命令行或者Profile传入属性的值，
+            以实现更为灵活的构建-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
